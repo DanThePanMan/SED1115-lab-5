@@ -1,14 +1,15 @@
 from machine import Pin
 from utime import sleep
 
-pin = Pin("LED", Pin.OUT)
 
-print("LED starts flashing...")
+button = Pin(22, Pin.IN, Pin.PULL_DOWN)
+
 while True:
     try:
-        pin.toggle()
-        sleep(1) # sleep 1sec
+        if button.value(): #if button is pressed
+            print("pressed")
+        while button.value(): #make it so one press sends once
+            pass
     except KeyboardInterrupt:
         break
-pin.off()
 print("Finished.")
